@@ -9,6 +9,8 @@ function App() {
   const [foodOrigin, setFoodOrigin] = useState("");
   const [foodDrink, setFoodDrink] = useState("");
 
+  const [newFoodDrink, setNewFoodDrink] = useState("");
+
   const [foodList, setFoodList] = useState([]);
 
   useEffect(() => {
@@ -25,6 +27,17 @@ function App() {
       foodOrigin: foodOrigin,
       foodDrink: foodDrink,
     });
+  };
+
+  const updateDrink = (id) => {
+    Axios.put("http://localhost:8080/update", {
+      id: id,
+      newFoodDrink: newFoodDrink,
+    });
+  };
+
+  const deleteFood = (id) => {
+    Axios.delete(`http://localhost:8080/delete/${id}`);
   };
 
   return (
@@ -73,12 +86,39 @@ function App() {
 
       {foodList.map((val, key) => {
         return (
-          <div key={key}>
-            <h2>{val.foodName}</h2>
-            <h3>{val.expirationDate}</h3>
-            <h3>{val.typeOfFood}</h3>
-            <h3>{val.countryOfOrigin}</h3>
-            <h3>{val.bestDrinkAsASideDish}</h3>
+          <div key={key} className="container">
+            <h2>Food Name: {val.foodName}</h2>
+            <h3>Days Until It Expires: {val.expirationDate}</h3>
+            <h3>Type Of Food: {val.typeOfFood}</h3>
+            <h3>Origin Country: {val.countryOfOrigin}</h3>
+            <h3>Best to drink with: {val.bestDrinkAsASideDish}</h3>
+
+            <div className="Update-section">
+              <input
+                type="text"
+                placeholder="New Best Drink"
+                className="update-input"
+                onChange={(event) => {
+                  setNewFoodDrink(event.target.value);
+                }}
+              />
+              <div>
+                <button
+                  onClick={() => {
+                    updateDrink(val._id);
+                  }}
+                >
+                  Update Drink
+                </button>
+                <button
+                  onClick={() => {
+                    deleteFood(val._id);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         );
       })}

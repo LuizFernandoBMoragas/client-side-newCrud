@@ -25,6 +25,14 @@ input {
   outline: none;
 }
 
+.update-input {
+  width: 130px;
+  height: 22px;
+  font-size: 15px;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
 button {
   width: 208px;
   height: 35px;
@@ -35,7 +43,32 @@ button {
   border-radius: 5px;
 }
 
+.update-button {
+  width: 130px;
+  height: 25px;
+  font-size: 15px;
+  margin-top: 15px;
+  color: lightgray;
+  background-color: #5e2129;
+  border-radius: 5px;
+}
+
+.update-button:hover {
+  cursor: pointer;
+  color: #df6604cb;
+}
+
 button:hover {
   cursor: pointer;
   color: #df6604cb;
+}
+
+.container {
+  margin-bottom: 1rem;
+  border: 2px dashed rgba(102, 5, 5, 0.87);
+  color: #5e2129;
+}
+
+.Update-section {
+  margin: 1rem;
 }
