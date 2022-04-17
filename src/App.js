@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [foodName, setFoodName] = useState("");
+  const [days, setDays] = useState(0);
+  const [foodType, setFoodType] = useState("");
+  const [foodOrigin, setFoodOrigin] = useState("");
+  const [foodDrink, setFoodDrink] = useState("");
+
   return (
     <div className="App">
       <h1>Food Menu Model</h1>
