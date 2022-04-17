@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import "./App.css";
 
@@ -8,6 +8,14 @@ function App() {
   const [foodType, setFoodType] = useState("");
   const [foodOrigin, setFoodOrigin] = useState("");
   const [foodDrink, setFoodDrink] = useState("");
+
+  const [foodList, setFoodList] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:8080/read").then((response) => {
+      setFoodList(response.data);
+    });
+  }, []);
 
   const addToMenu = () => {
     Axios.post("http://localhost:8080/insert", {
@@ -60,6 +68,20 @@ function App() {
       />
 
       <button onClick={addToMenu}>Add to Menu Model</button>
+
+      <h1> Food List </h1>
+
+      {foodList.map((val, key) => {
+        return (
+          <div key={key}>
+            <h2>{val.foodName}</h2>
+            <h3>{val.expirationDate}</h3>
+            <h3>{val.typeOfFood}</h3>
+            <h3>{val.countryOfOrigin}</h3>
+            <h3>{val.bestDrinkAsASideDish}</h3>
+          </div>
+        );
+      })}
     </div>
   );
 }
