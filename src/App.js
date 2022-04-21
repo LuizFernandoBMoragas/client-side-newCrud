@@ -14,13 +14,13 @@ function App() {
   const [foodList, setFoodList] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:8080/read").then((response) => {
+    Axios.get("https://food-menu-model.herokuapp.com/read").then((response) => {
       setFoodList(response.data);
     });
   }, []);
 
   const addToMenu = () => {
-    Axios.post("http://localhost:8080/insert", {
+    Axios.post("https://food-menu-model.herokuapp.com/insert", {
       foodName: foodName,
       days: days,
       foodType: foodType,
@@ -30,14 +30,14 @@ function App() {
   };
 
   const updateDrink = (id) => {
-    Axios.put("http://localhost:8080/update", {
+    Axios.put("https://food-menu-model.herokuapp.com/update", {
       id: id,
       newFoodDrink: newFoodDrink,
     });
   };
 
   const deleteFood = (id) => {
-    Axios.delete(`http://localhost:8080/delete/${id}`);
+    Axios.delete(`https://food-menu-model.herokuapp.com/delete/${id}`);
   };
 
   return (
